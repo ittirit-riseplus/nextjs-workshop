@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-
+import Image from "next/image";
 // Restaurant type
 interface Restaurant {
     id: string;
@@ -96,13 +96,11 @@ export default function RestaurantPage() {
                     className="bg-transparent p-2 rounded-lg hover:bg-red-100 dark:hover:bg-red-900 transition"
                     title="ออกจากระบบ"
                 >
-                    {/* Icon: Switch Off (Logout) */}
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 17l5-5m0 0l-5-5m5 5H9m4 5v1a2 2 0 01-2 2H7a2 2 0 01-2-2V6a2 2 0 012-2h4a2 2 0 012 2v1" />
                     </svg>
                 </button>
             </div>
-            {/* แถบค้นหา */}
             <div className="mb-6 flex justify-center">
                 <input
                     placeholder="ค้นหาร้านอาหาร..."
@@ -111,7 +109,6 @@ export default function RestaurantPage() {
                     className={`w-full max-w-md px-4 py-2 rounded-lg border text-base ${isDark ? 'bg-gray-800 border-gray-700 text-gray-100' : 'bg-white border-gray-300 text-gray-800'}`}
                 />
             </div>
-            {/* ปุ่มเพิ่มร้านอาหาร */}
             <div className="flex gap-3 mb-6 items-center flex-wrap justify-end">
                 <button
                     onClick={() => router.push('/restaurant/add')}
@@ -126,7 +123,6 @@ export default function RestaurantPage() {
                 </button>
             </div>
             {loading && <div className="text-center text-gray-400 mb-4">กำลังโหลด...</div>}
-            {/* รายการร้านอาหาร */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {filteredRestaurants.map(rest => (
                     <div
@@ -134,9 +130,11 @@ export default function RestaurantPage() {
                         className={`rounded-xl shadow-md p-5 flex flex-col items-center relative ${isDark ? 'bg-gray-800' : 'bg-gray-50'}`}
                     >
                         <div className="w-[120px] h-[120px] mb-3 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-600 flex items-center justify-center bg-white">
-                            <img
+                            <Image
                                 src={rest.image}
                                 alt={rest.name}
+                                width={800}
+                                height={600}
                                 className="object-cover w-full h-full"
                                 style={{ aspectRatio: '1/1' }}
                                 loading="lazy"
@@ -160,7 +158,6 @@ export default function RestaurantPage() {
                                     disabled={loading}
                                     title="ดูรายละเอียด"
                                 >
-                                    {/* Eye Icon */}
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />

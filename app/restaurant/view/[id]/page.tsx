@@ -1,6 +1,7 @@
 'use client';
 import { useParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 type Restaurant = {
     id: string;
@@ -102,9 +103,11 @@ export default function RestaurantPage() {
             </div>
             <div className="flex flex-col items-center">
                 <div className="w-[180px] h-[180px] mb-5 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-600 bg-white flex items-center justify-center">
-                    <img
+                    <Image
                         src={editMode ? image : restaurant.image}
                         alt={editMode ? name : restaurant.name}
+                        width={800}
+                        height={600}
                         className="object-cover w-full h-full"
                         style={{ aspectRatio: "1/1" }}
                         loading="lazy"
