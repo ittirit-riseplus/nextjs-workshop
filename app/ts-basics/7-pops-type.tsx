@@ -1,12 +1,14 @@
-type GreetingProps = {
-  name: string;
-  age?: number;
-};
+type ProfileProps = {
+  name: string
+  age: number
+}
 
-export default function Greeting({ name, age }: GreetingProps) {
+export default function Profile({ name, age }: ProfileProps) {
+  // name = "New Name" ❌ แบบนี้จะ error เพราะ props เป็น read-only
   return (
-    <h1>
-      สวัสดี {name} {age && `(อายุ ${age})`}
-    </h1>
-  );
+    <div>
+      <h2>ชื่อ: {name}</h2>
+      <p>อายุ: {age}</p>
+    </div>
+  )
 }

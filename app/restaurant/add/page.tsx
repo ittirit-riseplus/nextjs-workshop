@@ -1,6 +1,9 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Textarea from '@/app/components/form/text-area';
+import TextInput from '@/app/components/form/text-input';
+import Button from '@/app/components/ui/button';
 
 export default function AddRestaurantPage() {
     const [name, setName] = useState('');
@@ -24,56 +27,64 @@ export default function AddRestaurantPage() {
         router.back();
     };
 
+    // You may need to import useTheme or define isDark based on your app's theme logic
+    // Example: const { isDark } = useTheme();
+    // For now, let's assume isDark is always false
+    const isDark = false;
+
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
             <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
                 <h1 className="text-2xl font-bold mb-6 text-center text-gray-900 dark:text-gray-100">เพิ่มชื่ออาหาร</h1>
-                <input
-                    className="w-full mb-4 px-4 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-500 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500"
-                    placeholder="ชื่ออาหาร"
+                <TextInput
+                    label="ชื่ออาหาร"
                     value={name}
-                    onChange={e => setName(e.target.value)}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="ชื่ออาหาร"
+                    customClassName={`w-100 px-3 py-2 rounded-lg border text-base ${isDark
+                        ? "bg-gray-800 border-gray-700 text-gray-100"
+                        : "bg-white border-gray-300 text-gray-800"
+                        }`}
                     disabled={loading}
                 />
-                <input
-                    className="w-full mb-4 px-4 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-500 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500"
-                    placeholder="ลิงก์รูปภาพ"
+                <TextInput
+                    label="URL รูปร้าน/อาหาร"
                     value={image}
-                    onChange={e => setImage(e.target.value)}
+                    onChange={(e) => setImage(e.target.value)}
+                    placeholder="URL รูปร้าน/อาหาร"
+                    customClassName={`w-100  px-3 py-2 rounded-lg border text-base ${isDark
+                        ? "bg-gray-800 border-gray-700 text-gray-100"
+                        : "bg-white border-gray-300 text-gray-800"
+                        }`}
                     disabled={loading}
                 />
-                <textarea
-                    className="w-full mb-4 px-4 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-500 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500"
-                    placeholder="รายละเอียด"
+                <Textarea
+                    label="รายละเอียดร้านอาหาร"
                     value={description}
-                    onChange={e => setDescription(e.target.value)}
+                    onChange={(e) => setDescription(e.target.value)}
+                    placeholder="รายละเอียดร้านอาหาร"
+                    className={` w-100  px-3 py-2 rounded-lg border text-base ${isDark
+                        ? "bg-gray-800 border-gray-700 text-gray-100"
+                        : "bg-white border-gray-300 text-gray-800"
+                        }`}
                     disabled={loading}
                     rows={4}
                 />
-                <div className="flex gap-2">
-                    <button
-                        type="button"
-                        onClick={() => router.back()}
-                        className="flex-1 py-2 rounded bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 font-semibold transition disabled:opacity-50"
-                        disabled={loading}
-                    >
-                        ย้อนกลับ
-                    </button>
-                    <button
+                <div className="flex gap-2 mt-4">
+                    <Button
+                        label="บันทึก"
                         onClick={handleAdd}
+                        variant="primary"
+                        customClassName="bg-green-600 text-white rounded-lg px-5 py-2 font-semibold disabled:opacity-60 flex-1"
                         disabled={loading}
-                        className="flex-1 py-2 rounded bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-600 text-white font-semibold transition disabled:opacity-50"
-                    >
-                        {loading ? (
-                            <span className="flex items-center justify-center">
-                                <svg className="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
-                                </svg>
-                                กำลังเพิ่ม...
-                            </span>
-                        ) : 'เพิ่ม'}
-                    </button>
+                    />
+                    <Button
+                        label="ยกเลิก"
+                        onClick={() => router.back()}
+                        customClassName="bg-gray-400 text-white rounded-lg px-5 py-2 font-semibold flex-1"
+                        variant="secondary"
+                        disabled={loading}
+                    />
                 </div>
             </div>
         </div>
