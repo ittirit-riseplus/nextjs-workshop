@@ -42,5 +42,5 @@ const TextInput = ({
         {error && <p className="text-red-500 text-sm">{error}</p>}
     </div>
 );
-TextInput.displayName = 'TextInput';
+
 export default TextInput;

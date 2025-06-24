@@ -131,7 +131,7 @@ export default function RestaurantPage() {
                     >
                         <div className="w-[120px] h-[120px] mb-3 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-600 flex items-center justify-center bg-white">
                             <Image
-                                src={rest.image}
+                                src="/img/food.jpg"
                                 alt={rest.name}
                                 width={800}
                                 height={600}

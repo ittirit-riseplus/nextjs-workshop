@@ -3,6 +3,7 @@ type Product = {
   id: number;
   name: string;
   description?: string; // Optional property
+  
 };
 
 const p1: Product = { id: 1, name: "Apple" };

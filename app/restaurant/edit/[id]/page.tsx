@@ -47,8 +47,8 @@ export default function RestaurantEditPage() {
     const params = useParams();
     const id = typeof params.id === "string" ? params.id : Array.isArray(params.id) ? params.id[0] : "";
     const [restaurant, setRestaurant] = useState<Restaurant | null>(null);
-    const [loading, setLoading] = useState(true);
-    const [isDark, setIsDark] = useState(false);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [isDark, setIsDark] = useState<boolean>(false);
 
     // ฟิลด์สำหรับแก้ไข
     const [name, setName] = useState("");
