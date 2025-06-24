@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const API = process.env.NEXT_PUBLIC_API_URL;
+const API = "https://6847f11dec44b9f3493ee59a.mockapi.io/restaurants";
 
 export async function GET(
   req: NextRequest,

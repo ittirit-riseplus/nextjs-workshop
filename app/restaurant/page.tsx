@@ -14,7 +14,7 @@ interface Restaurant {
 
 export default function RestaurantPage() {
     const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState<boolean>(false);
 
     // Auth state
     const [token, setToken] = useState('');
@@ -29,7 +29,7 @@ export default function RestaurantPage() {
             localStorage.removeItem('token');
             localStorage.removeItem('token_expires_at');
             setToken('');
-            router.replace('/login');
+            router.replace('/authn/login');
         }
     }, [router]);
 
@@ -37,7 +37,7 @@ export default function RestaurantPage() {
         localStorage.removeItem('token');
         localStorage.removeItem('token_expires_at');
         setToken('');
-        router.replace('/login');
+        router.replace('/authn/login');
     };
 
     const fetchData = async () => {
@@ -131,7 +131,7 @@ export default function RestaurantPage() {
                     >
                         <div className="w-[120px] h-[120px] mb-3 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-600 flex items-center justify-center bg-white">
                             <Image
-                                src="/img/food.jpg"
+                                src={rest.image?.trim() || '/no-image.png'}
                                 alt={rest.name}
                                 width={800}
                                 height={600}

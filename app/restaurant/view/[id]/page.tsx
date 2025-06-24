@@ -14,9 +14,11 @@ type Restaurant = {
 };
 
 const fetchRestaurant = async (id: string): Promise<Restaurant | null> => {
+
     try {
         const res = await fetch(`/api/restaurant/${id}`);
         if (!res.ok) return null;
+
         return await res.json();
     } catch {
         return null;
